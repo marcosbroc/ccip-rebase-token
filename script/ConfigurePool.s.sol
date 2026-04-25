@@ -5,7 +5,7 @@ import {Script} from "forge-std/Script.sol";
 import {TokenPool} from "@ccip/contracts/pools/TokenPool.sol";
 import {RateLimiter} from "@ccip/contracts/libraries/RateLimiter.sol";
 
-contract ConfigurePool is Script {
+contract ConfigurePoolScript is Script {
     function run(
         address localPool,
         uint64 remoteChainSelector,
@@ -20,7 +20,7 @@ contract ConfigurePool is Script {
     ) public {
         vm.startBroadcast();
         bytes[] memory remotePoolAddresses = new bytes[](1);
-        remotePoolAddresses[1] = abi.encode(remotePool);
+        remotePoolAddresses[0] = abi.encode(remotePool);
         TokenPool.ChainUpdate[] memory chainsToAdd = new TokenPool.ChainUpdate[](1);
         chainsToAdd[0] = TokenPool.ChainUpdate({
             remoteChainSelector: remoteChainSelector,
